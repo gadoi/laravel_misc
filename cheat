@@ -1,0 +1,49 @@
+Clear Application Cache
+Application cache stored by Laravel framework can be cleared by typing following command:
+
+$ php artisan cache:clear
+
+Clear Route cache
+In order to see the newly created route, if you face some issues, first of all clear the route. In order to do so type the following command:
+
+$ php artisan route:cache
+
+Clear Config Cache
+In order to clear the configs from your framework and view the updated configs, type following in your terminal:
+
+$ php artisan config:cache
+
+Clear View Files
+While you type php artisan serve, the framework compiles the view and stores them in cache. So sometimes when you make changes in your view, it might not be reflected. Therefore, you should type following to clear the cache:
+
+$php artisan view:clear
+
+Cau hinh PHP
+memory_limit = 256M
+upload_max_filesize = 64M
+cgi.fix_pathinfo=0
+
+Listing Current Units
+To see a list of all of the active units that systemd knows about, we can use the list-units command:
+
+systemctl list-units
+
+Reload systemd
+
+systemctl daemon-reload
+Finally run,
+
+systemctl reset-failed
+
+update-rc.d mysql defaults
+
+systemctl list-unit-files '*mariadb*' '*mysql*'
+
+Auto-Restart MySQL When It Crashes During a Brute Force Attack
+ To keep things up and running automatically after a crash, I use a simple cronjob to check and restart MySQL if it is down.
+crontab -e
+* * * * * service mysql status > /dev/null || service mysql start
+
+If checking every single minute is too frequent, a five-minute interval will do just as fine for smaller websites:
+*/5 * * * * service mysql status > /dev/null || service mysql start
+*/15 
