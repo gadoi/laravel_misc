@@ -1,0 +1,127 @@
+Tong hop cac thu Laravel
+
+Create DB for Laravel
+
+#mysql -u root -p
+mysql> CREATE DATABASE agency;
+mysql> GRANT ALL ON agency.* to 'agency'@'localhost' IDENTIFIED BY 'mYsql@123';
+mysql> FLUSH PRIVILEGES;
+mysql> quit
+
+neu khong grant duoc
+mysql> CREATE USER 'agency'@'localhost' IDENTIFIED BY 'mYsql@123';
+mysql> grant all privileges on *.* to 'agency'@'localhost';
+
+# chown -R www-data.www-data /var/www/html/agency
+# chmod -R 755 /var/www/html/agency
+# chmod -R 777 /var/www/html/agency/storage/
+
+cp .env.example .env
+
+edit file .env
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=agency
+DB_USERNAME=agency
+DB_PASSWORD=secret
+
+php artisan key:generate
+
+Start Laravel
+php artisan serve
+
+# composer update
+
+Tao bang
+php artisan migrate
+php artisan db:seed
+
+php artisan config:cache
+php artisan cache:clear
+php artisan config:clear
+composer dump-autoload
+
+Step 5: Enable the Laravel and Rewrite Module
+
+sudo a2ensite agency.conf
+sudo a2enmod rewrite
+
+Installing NPM
+
+I recommend install following ubuntu packages, for nodejs.
+
+# sudo apt-get install autoconf libtool pkg-config nasm
+
+Some front end of Laravel might require nodejs. So this too needs to be installed.
+
+# curl -sL https://deb.nodesource.com/setup_X.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+X — version of the nodejs
+
+After we need to install npm
+
+# npm install
+
+Enable ReactJS
+
+If you are using Laravel application with ReactJS run following:
+
+# php artisan preset react
+
+Dang nhap
+http://14.225.3.153/agency/public/admin/
+admin@admin.com/admin
+
+
+crontab -e
+* * * * * php /var/www/html/agency/artisan schedule:run >> /dev/null 2>&1
+
+Cho phep cong 4000 chay qua tuong lua
+sudo ufw allow 4000/tcp
+sudo ufw reload
+
+
+Backup DB
+mysqldump -u %user% -p %from-database% > /home/gdata/bk.sql
+
+Restore DB
+mysql -u %user% -p %to-database% < /home/gdata/bk.sql
+
+
+Loi apache2 khong khoi dong duoc
+
+journalctl | tail
+cd /etc/apache2
+apache2ctl configtest
+
+check if it is installed.
+dpkg -l |grep -iE 'mysql|mariadb'
+
+Then to check if the service exists
+systemctl -a | grep -iE 'mysql|mariadb'
+
+Tim kiem theo ten file
+
+sudo find / -name my.cnf
+
+To find all socket files on your system run:
+sudo find / -type s
+
+Check log (end file)
+tail -f /var/log/mysqld.log
+tail -f /var/log/messages|grep -i mysql
+
+Xem dich vu chay
+systemctl list-unit-files '*mariadb*' '*mysql*'
+
+1234@!@#aA
+
+Display MySQL User Account Privileges 
+SHOW GRANTS FOR 'database_user'@'localhost';
+
+Remove an Existing MySQL User Account 
+DROP USER 'user'@'localhost'
+
