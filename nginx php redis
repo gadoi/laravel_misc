@@ -1,0 +1,26 @@
+mysql
+nginx
+panel
+php  
+redis
+stop 
+
+Nginx : Install
+dnf -y install nginx
+vi /etc/nginx/nginx.conf
+# line 41: change to your hostname
+server_name www.tamquoc;
+
+systemctl enable --now nginx
+firewall-cmd --add-service=http --permanent
+firewall-cmd --add-service=https --permanent
+firewall-cmd --reload
+
+PHP : Install
+dnf module list php
+dnf module -y install php:7.3
+php -v
+echo "<?php echo 'PHP 7.3 Test Page'.\"\n\"; ?>" > php_test.php
+
+Redis: Install
+dnf module -y install redis:5
