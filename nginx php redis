@@ -48,6 +48,9 @@ View port running
 #netstat -tlpn | grep nginx
 #ss -tlpn | grep 6379
 
+//view service
+# firewall-cmd --zone=public --list-services
+
 Remove service over firewall
 eg:
 #firewall-cmd --zone=public --remove-service=dhcpv6-client --permanent
