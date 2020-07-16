@@ -24,3 +24,7 @@ echo "<?php echo 'PHP 7.3 Test Page'.\"\n\"; ?>" > php_test.php
 
 Redis: Install
 dnf module -y install redis:5
+
+View port running
+netstat -tlpn | grep nginx
+ss -tlpn | grep 6379
