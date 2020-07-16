@@ -97,26 +97,27 @@ cat /www/server/data/*.err
 nginx installation directory
 /www/server/nginx
 Start
-service nginx start
+#service nginx start
 Stop
-service nginx stop
+#service nginx stop
 Restart
-service nginx restart
+#service nginx restart
 Reload
-service nginx reload
+#service nginx reload
 nginx Configuration
-/www/server/nginx/conf/nginx.conf
-Apache
+#/www/server/nginx/conf/nginx.conf
+
+* Apache
 apache installation directory
 /www/server/httpd
 Start
-service httpd start
+#service httpd start
 Stop
-service httpd stop
+#service httpd stop
 Restart
-service httpd restart
+#service httpd restart
 Reload
-service httpd reload
+#service httpd reload
 apache Configuration
 /www/server/apache/conf/httpd.conf
 
@@ -128,13 +129,13 @@ phpmyadmin installation directory
 Data storage directory
 /www/server/data mysql
 Start
-service mysqld start
+#service mysqld start
 Stop
-service mysqld stop
+#service mysqld stop
 Restart
-service mysqld restart
+#service mysqld restart
 Reload
-service mysqld reload
+#service mysqld reload
 mysql Configuration
 /etc/my.cnf
 
@@ -142,11 +143,11 @@ mysql Configuration
 ftp installation directory
 /www/server/pure-ftpd
 Start
-service pure-ftpd start
+#service pure-ftpd start
 Stop
-service pure-ftpd stop
+#service pure-ftpd stop
 Restart
-service pure-ftpd restart
+#service pure-ftpd restart
 ftp Configuration
 /www/server/pure-ftpd/etc/pure-ftpd
 
@@ -168,19 +169,20 @@ Configuration(Please modify by PHP version, e.g. /www/server/php/52/etc/php.ini)
 redis installation directory
 /www/server/redis
 Start
-service redis start
+#service redis start
 Stop
-service redis stop
+#service redis stop
 redis Configuration
 /www/server/redis/redis.conf
-Memcached
+
+* Memcached
 memcached installation directory
 /usr/local/memcached
 Start
-service memcached start
+#service memcached start
 Stop
-service memcached stop
+#service memcached stop
 Restart
-service memcached restart
+#service memcached restart
 Reload
-service memcached reload
+#service memcached reload
