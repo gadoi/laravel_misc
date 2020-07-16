@@ -11,20 +11,26 @@ vi /etc/nginx/nginx.conf
 # line 41: change to your hostname
 server_name www.tamquoc;
 
-systemctl enable --now nginx
-firewall-cmd --add-service=http --permanent
-firewall-cmd --add-service=https --permanent
-firewall-cmd --reload
+#systemctl enable --now nginx
+#firewall-cmd --add-service=http --permanent
+#firewall-cmd --add-service=https --permanent
+#firewall-cmd --reload
 
 PHP : Install
-dnf module list php
-dnf module -y install php:7.3
-php -v
-echo "<?php echo 'PHP 7.3 Test Page'.\"\n\"; ?>" > php_test.php
+#dnf module list php
+#dnf module -y install php:7.3
+#php -v
+#echo "<?php echo 'PHP 7.3 Test Page'.\"\n\"; ?>" > php_test.php
 
 Redis: Install
-dnf module -y install redis:5
+#dnf module -y install redis:5
+
+Install Redis PHP extension
+#dnf install php-pear php-devel
+Now, execute commands to enable the Redis PHP extension on your CentOS server.
+#yum install make
+# pecl install igbinary igbinary-devel redis
 
 View port running
-netstat -tlpn | grep nginx
-ss -tlpn | grep 6379
+#netstat -tlpn | grep nginx
+#ss -tlpn | grep 6379
