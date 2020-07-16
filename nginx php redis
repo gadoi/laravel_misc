@@ -11,6 +11,7 @@ vi /etc/nginx/nginx.conf
 # line 41: change to your hostname
 server_name www.tamquoc;
 
+Configure firewalld to Allow Nginx Traffic
 #systemctl enable --now nginx
 #firewall-cmd --add-service=http --permanent
 #firewall-cmd --add-service=https --permanent
