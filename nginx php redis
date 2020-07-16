@@ -24,12 +24,25 @@ PHP : Install
 
 Redis: Install
 #dnf module -y install redis:5
+The following are some useful Redis set up hints before you proceed to start and configure the Redis service:
+
+Make sure to set the Linux kernel overcommit memory setting to 1 by adding vm.overcommit_memory = 1 to /etc/sysctl.conf configuration file.
+#sysctl vm.overcommit_memory=1
+In Linux, the transparent huge pages features tends to significantly affect both memory usage and latency in a negative way. To disable
+#echo never > /sys/kernel/mm/transparent_hugepage/enabled
 
 Install Redis PHP extension
 #dnf install php-pear php-devel
 Now, execute commands to enable the Redis PHP extension on your CentOS server.
 #yum install make
 # pecl install igbinary igbinary-devel redis
+
+Configure Redis as a Cache Server
+#vim /etc/redis/redis.conf
+maxmemory 256mb
+maxmemory-policy allkeys-lru
+
+
 
 View port running
 #netstat -tlpn | grep nginx
