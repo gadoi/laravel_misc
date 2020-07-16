@@ -1,3 +1,13 @@
+Requirements:
+Memory:
+512M or more, 768M or more is recommended (Pure panel for about 60M of system memory)
+Hard disk:
+More than 100M available hard disk space (Pure panel for about 20M disk space)
+System:
+CentOS 7.1+ (Ubuntu16.04+., Debian9.0+), to ensure that it is a clean operating system, there is no other environment with Apache/Nginx/php/MySQL installed (the existing environment can not be installed)
+Linux Panel Installation Command
+aaPanel is developed based on Centos, we recommend using Centos to install it
+
 * Installation
 Centos Installation
 yum install -y wget && wget -O install.sh http://www.aapanel.com/script/install_6.0_en.sh && bash install.sh
@@ -8,61 +18,82 @@ wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh && bas
 Fedora Installation
 yum install -y wget && wget -O install.sh http://www.aapanel.com/script/install_6.0_en.sh && bash install.sh
 
-Management
+* Management
 Stop
-service bt stop
+# service bt stop
 Start
-service bt start
+# service bt start
 Restart
-service bt restart
+# service bt restart
 Uninstall
-service bt stop && chkconfig --del bt && rm -f /etc/init.d/bt && rm -rf /www/server/panel
-View current port of control panel
-cat /www/server/panel/data/port.pl
-Change port of control panel，e.g. 8881（centos 6 Operation System）
+# service bt stop && chkconfig --del bt && rm -f /etc/init.d/bt && rm -rf /www/server/panel
+
+* View current port of control panel
+# cat /www/server/panel/data/port.pl
+
+* Change port of control panel，e.g. 8881（centos 6 Operation System）
 echo '8881' > /www/server/panel/data/port.pl && service bt restart
 iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport 8881 -j ACCEPT
 service iptables save
 service iptables restart
-Change port of control panel，e.g. 8881（centos 7 Operation System）
+
+* Change port of control panel，e.g. 8881（centos 7 Operation System）
 echo '8881' > /www/server/panel/data/port.pl && service bt restart
 firewall-cmd --permanent --zone=public --add-port=8881/tcp
 firewall-cmd --reload
-Force to change MySQL manager (root) Password，e.g. 123456
+
+* Force to change MySQL manager (root) Password，e.g. 123456
 cd /www/server/panel && python tools.py root 123456
-Change control Panel login password，e.g. 123456
+
+* Change control Panel login password，e.g. 123456
 cd /www/server/panel && python tools.py panel 123456
-Site Configuration location
+
+* Site Configuration location
 /www/server/panel/vhost
-Delete banding domain of control panel
+
+* Delete banding domain of control panel
 rm -f /www/server/panel/data/domain.conf
-Clean login restriction
+
+* Clean login restriction
 rm -f /www/server/panel/data/*.login
-View control panel authorization IP
+
+* View control panel authorization IP
 cat /www/server/panel/data/limitip.conf
-Stop access restriction
+
+* Stop access restriction
 rm -f /www/server/panel/data/limitip.conf
-View permission domain
+
+* View permission domain
 cat /www/server/panel/data/domain.conf
-Turn off control panel SSL
+
+*Turn off control panel SSL
 rm -f /www/server/panel/data/ssl.pl && /etc/init.d/bt restart
-View control panel error logs
+
+*View control panel error logs
 cat /tmp/panelBoot
-View database error log
+
+*View database error log
 cat /www/server/data/*.err
-Site Configuration directory(nginx)
+
+* Site Configuration directory(nginx)
 /www/server/panel/vhost/nginx
-Site Configuration directory(apache)
+
+* Site Configuration directory(apache)
 /www/server/panel/vhost/apache
-Site default directory
+
+*Site default directory
 /www/wwwroot
-Database backup directory
+
+*Database backup directory
 /www/backup/database
-Site backup directory
+
+*Site backup directory
 /www/backup/site
-Site logs
+
+*Site logs
 /www/wwwlogs
-Nginx
+
+*Nginx
 nginx installation directory
 /www/server/nginx
 Start
@@ -88,7 +119,8 @@ Reload
 service httpd reload
 apache Configuration
 /www/server/apache/conf/httpd.conf
-MySQL
+
+*MySQL
 mysql installation directory
 /www/server/mysql
 phpmyadmin installation directory
@@ -105,7 +137,8 @@ Reload
 service mysqld reload
 mysql Configuration
 /etc/my.cnf
-FTP
+
+*FTP
 ftp installation directory
 /www/server/pure-ftpd
 Start
@@ -116,7 +149,8 @@ Restart
 service pure-ftpd restart
 ftp Configuration
 /www/server/pure-ftpd/etc/pure-ftpd
-PHP
+
+*PHP
 php installation directory
 /www/server/php
 Start(Please modify by PHP version, e.g. service php-fpm-54 start)
@@ -129,7 +163,8 @@ Reload(Please modify by PHP version, e.g. service php-fpm-54 reload)
 service php-fpm-{52|53|54|55|56|70|71} reload
 Configuration(Please modify by PHP version, e.g. /www/server/php/52/etc/php.ini)
 /www/server/php/{52|53|54|55|56|70|71}/etc/php.ini
-Redis
+
+*Redis
 redis installation directory
 /www/server/redis
 Start
